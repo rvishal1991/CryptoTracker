@@ -22,33 +22,6 @@ A modern cryptocurrency tracking app built using **SwiftUI**, leveraging **CoinG
 - 📱 **NavigationStack**-based flow
 - ✨ **Custom Minor Animations** for smooth UX
 
----
-
-## 🧠 Architecture
-
-CryptoTracker
-│
-├── Models # API and Core Data models
-├── Views # All SwiftUI screens and UI components
-├── ViewModels # Business logic and state
-├── Services
-│ ├── APIService # Network layer to handle API calls
-│ └── ImageLoader # Image downloading & caching
-├── Persistence # Core Data stack and management
-├── Utilities # Formatters, sorting, extensions
-└── Resources # Constants, assets
-
-
-
----
-
-## 📸 Screenshots
-
-> *(Add your screenshots below)*
-
-| Home View | Detail View | Chart View |
-|----------|-------------|------------|
-| ![Home](screenshots/home.png) | ![Detail](screenshots/detail.png) | ![Chart](screenshots/chart.png) |
 
 ---
 
