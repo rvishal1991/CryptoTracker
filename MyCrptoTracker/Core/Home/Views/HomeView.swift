@@ -6,19 +6,28 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 struct HomeView: View {
+    
+    @Environment(\.router) var router
    
     @EnvironmentObject private var vm:HomeViewModel
-    @State private var showPortfolio:Bool = true
+    @State private var showPortfolio:Bool = true // animate right
+    @State private var showPortfolioView:Bool = false //new sheet
     
     var body: some View {
         ZStack {
             Color.theme.background
                 .ignoresSafeArea()
+//                .sheet(isPresented: $showPortfolioView) {
+//                    PortfolioView()
+//                }
             
             VStack {
                 homeHeader
+                
+                HomeStatsView(showPortfolio: $showPortfolio)
                 
                 SearchBarView(searchText: $vm.searchText)
                 
@@ -41,7 +50,7 @@ struct HomeView: View {
 }
 
 #Preview {
-    NavigationStack {
+    RouterView { _ in
         HomeView()
             .toolbarVisibility(.hidden, for: .navigationBar)
     }
@@ -55,6 +64,15 @@ extension HomeView {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")
                 .animation(.none, value: showPortfolio)
+                .onTapGesture {
+                    if showPortfolio{
+//                        showPortfolioView.toggle()
+                        router.showScreen(.sheet) { _ in
+                            PortfolioView()
+                                .environmentObject(vm)
+                        }
+                    }
+                }
                 .background(
                     CircleButtonAnimationView(animate: $showPortfolio)
                 )

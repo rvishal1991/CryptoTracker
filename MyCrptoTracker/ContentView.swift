@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 struct ContentView: View {
     var body: some View {
@@ -34,5 +35,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    RouterView { _ in
+        ContentView()
+    }
 }

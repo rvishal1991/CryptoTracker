@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		18028D522DDF374A0064022B /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = 18028D512DDF374A0064022B /* SwiftfulRouting */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		180845C22DDC842800AE52F0 /* MyCrptoTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCrptoTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18028D522DDF374A0064022B /* SwiftfulRouting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = MyCrptoTracker;
 			packageProductDependencies = (
+				18028D512DDF374A0064022B /* SwiftfulRouting */,
 			);
 			productName = MyCrptoTracker;
 			productReference = 180845C22DDC842800AE52F0 /* MyCrptoTracker.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 180845B92DDC842800AE52F0;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				18028D502DDF374A0064022B /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 180845C32DDC842800AE52F0 /* Products */;
 			projectDirPath = "";
@@ -332,6 +341,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		18028D502DDF374A0064022B /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18028D512DDF374A0064022B /* SwiftfulRouting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 18028D502DDF374A0064022B /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
+			productName = SwiftfulRouting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 180845BA2DDC842800AE52F0 /* Project object */;
 }
