@@ -13,24 +13,17 @@ struct HomeView: View {
     @Environment(\.router) var router
    
     @EnvironmentObject private var vm:HomeViewModel
-    @State private var showPortfolio:Bool = true // animate right
-    @State private var showPortfolioView:Bool = false //new sheet
+    @State private var showPortfolio:Bool = false // animate right
     
     var body: some View {
         ZStack {
             Color.theme.background
                 .ignoresSafeArea()
-//                .sheet(isPresented: $showPortfolioView) {
-//                    PortfolioView()
-//                }
             
             VStack {
                 homeHeader
-                
                 HomeStatsView(showPortfolio: $showPortfolio)
-                
                 SearchBarView(searchText: $vm.searchText)
-                
                 columnTitles
                 
                 if !showPortfolio {
@@ -46,6 +39,7 @@ struct HomeView: View {
                 Spacer(minLength: 0)
             }
         }
+        
     }
 }
 
@@ -66,7 +60,6 @@ extension HomeView {
                 .animation(.none, value: showPortfolio)
                 .onTapGesture {
                     if showPortfolio{
-//                        showPortfolioView.toggle()
                         router.showScreen(.sheet) { _ in
                             PortfolioView()
                                 .environmentObject(vm)
@@ -96,8 +89,12 @@ extension HomeView {
     private var allCoinsList: some View {
         List {
             ForEach(vm.allCoins) { coin in
-                CoinRowCell(coin: coin, showHoldingsColumn: false)
-                    .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
+                CoinRowCell(coin: coin, showHoldingsColumn: false, onTap: {
+                    router.showScreen(.push) { _ in
+                        DetailView(coin: coin)
+                    }
+                })
+                .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
             }
         }
         .listStyle(.plain)
@@ -106,8 +103,12 @@ extension HomeView {
     private var portfolioCoinsList: some View {
         List {
             ForEach(vm.portfolioCoins) { coin in
-                CoinRowCell(coin: coin, showHoldingsColumn: true)
-                    .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
+                CoinRowCell(coin: coin, showHoldingsColumn: true, onTap: {
+                    router.showScreen(.push) { _ in
+                        DetailView(coin: coin)
+                    }
+                })
+                .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
             }
         }
         .listStyle(.plain)

@@ -11,7 +11,7 @@ struct CoinRowCell: View {
     
     var coin:Coin = .mock
     var showHoldingsColumn:Bool = true
-    
+    var onTap: (() -> Void)? = nil
     var body: some View {
         HStack(spacing : 0) {
             leftColumn
@@ -22,6 +22,13 @@ struct CoinRowCell: View {
             rightColumn
         }
         .font(.subheadline)
+        .background(
+            Color.theme.background
+                .opacity(0.001)
+        )
+        .onTapGesture {
+            onTap?()
+        }
     }
 }
 
