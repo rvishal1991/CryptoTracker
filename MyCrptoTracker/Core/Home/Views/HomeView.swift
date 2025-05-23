@@ -115,13 +115,57 @@ extension HomeView {
     
     private var columnTitles: some View {
         HStack {
-            Text("Coin")
+            
+            HStack (spacing: 4){
+                Text("Coin")
+                Image(systemName: "chevron.down")
+                    .opacity( (vm.sortType == .rank || vm.sortType == .rankReveresed ) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortType == .rank ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default) {
+                    vm.sortType = vm.sortType == .rank ? .rankReveresed : .rank
+                }
+            }
+            
             Spacer()
             if showPortfolio {
-                Text("Holdings")
+                HStack (spacing: 4){
+                    Text("Holdings")
+                    Image(systemName: "chevron.down")
+                        .opacity((vm.sortType == .holdings || vm.sortType == .holdingsReveresed ) ? 1.0 : 0.0 )
+                        .rotationEffect(Angle(degrees: vm.sortType == .holdings ? 0 : 180))
+                }
+                .onTapGesture {
+                    withAnimation(.default) {
+                        vm.sortType = vm.sortType == .holdings ? .holdingsReveresed : .holdings
+                    }
+                }
             }
-            Text("Price")
-                .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            
+            HStack (spacing: 4){
+                Text("Price")
+                Image(systemName: "chevron.down")
+                    .opacity((vm.sortType == .price || vm.sortType == .priceReveresed ) ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortType == .price ? 0 : 180))
+
+            }
+            .frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+            .onTapGesture {
+                withAnimation(.default) {
+                    vm.sortType = vm.sortType == .price ? .priceReveresed : .price
+                }
+            }
+            
+            Button {
+                withAnimation(.linear(duration: 2.0)) {
+                    vm.reloadData()
+                }
+            } label: {
+                Image(systemName: "goforward")
+            }
+            .rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
+
         }
         .font(.caption)
         .foregroundStyle(Color.theme.secondaryText)
