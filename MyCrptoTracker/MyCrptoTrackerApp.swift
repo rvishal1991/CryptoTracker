@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftfulRouting
+import SwiftData
 
 @main
 struct MyCrptoTrackerApp: App {
@@ -27,5 +28,6 @@ struct MyCrptoTrackerApp: App {
             }
             .environmentObject(vm)
         }
+        .modelContainer(for:Portfolio.self) // The modelContainer holds the array of each Type of data that we want to read from the container
     }
 }

@@ -17,7 +17,8 @@ class HomeViewModel: ObservableObject {
     
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
-
+    @MainActor private let portfolioDataService = PortfolioDataService()
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
@@ -26,12 +27,12 @@ class HomeViewModel: ObservableObject {
     
     
     func addSubscribers() {
-//        dataService.$allCoins
-//            .sink { [weak self] coins in
-//                self?.allCoins = coins
-//            }
-//            .store(in: &cancellables)
-       
+        //        dataService.$allCoins
+        //            .sink { [weak self] coins in
+        //                self?.allCoins = coins
+        //            }
+        //            .store(in: &cancellables)
+        
         //updates allcoins
         $searchText
             .combineLatest(coinDataService.$allCoins)
@@ -49,6 +50,34 @@ class HomeViewModel: ObservableObject {
                 self?.stats = stats
             }
             .store(in: &cancellables)
+        
+        Task{
+            await addSubscribersForPortfolio()
+        }
+        
+    }
+    
+    @MainActor
+    func addSubscribersForPortfolio() {
+        //updates portfolioCoins
+        $allCoins
+            .combineLatest(portfolioDataService.$savedPortfolios)
+            .map { (coins, portfolioCoins) -> [Coin] in
+                coins.compactMap { (coin) -> Coin? in
+                    guard let portfolio = portfolioCoins.first(where: { $0.coinID == coin.id }) else { return nil }
+                    return coin.updateHoldings(amount: portfolio.amount)
+                }
+            }
+            .sink { [weak self] coins in
+                self?.portfolioCoins = coins
+            }
+            .store(in: &cancellables)
+    }
+    
+    
+    @MainActor
+    func updatePortfolio(coin: Coin, amount: Double) {
+        portfolioDataService.updatePortfoilo(coin: coin, amount: amount)
     }
     
     private func filterCoins(text:String, coins: [Coin]) -> [Coin] {
@@ -71,14 +100,14 @@ class HomeViewModel: ObservableObject {
         let volume = Statistics(title: "24h Volume" , value: data.volume)
         let btcDominance = Statistics(title: "BTC Dominance" , value: data.btcDominance)
         let portfolio = Statistics(title: "Portfolio Value" , value: "$0.00", percentageChange: 0)
-
+        
         stats.append(contentsOf: [
             marketCap,
             volume,
             btcDominance,
             portfolio
         ])
-
+        
         return stats
     }
     
