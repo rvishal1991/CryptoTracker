@@ -14,6 +14,7 @@ struct HomeView: View {
    
     @EnvironmentObject private var vm:HomeViewModel
     @State private var showPortfolio:Bool = false // animate right
+    @State private var selectedCoin:Coin? = nil
     
     var body: some View {
         ZStack {
@@ -74,6 +75,7 @@ extension HomeView {
                 .font(.headline)
                 .fontWeight(.heavy)
                 .foregroundStyle(Color.theme.accent)
+                .animation(.none, value: showPortfolio)
             Spacer()
             CircleButtonView(iconName: "chevron.right")
                 .rotationEffect(Angle(degrees: showPortfolio ? 180 : 0))
@@ -90,11 +92,13 @@ extension HomeView {
         List {
             ForEach(vm.allCoins) { coin in
                 CoinRowCell(coin: coin, showHoldingsColumn: false, onTap: {
+                    selectedCoin = coin
                     router.showScreen(.push) { _ in
                         DetailView(coin: coin)
                     }
                 })
                 .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
+                .listRowBackground(Color.theme.background)
             }
         }
         .listStyle(.plain)
@@ -104,11 +108,13 @@ extension HomeView {
         List {
             ForEach(vm.portfolioCoins) { coin in
                 CoinRowCell(coin: coin, showHoldingsColumn: true, onTap: {
+                    selectedCoin = coin
                     router.showScreen(.push) { _ in
                         DetailView(coin: coin)
                     }
                 })
                 .listRowInsets(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 10))
+                .listRowBackground(Color.theme.background)
             }
         }
         .listStyle(.plain)
