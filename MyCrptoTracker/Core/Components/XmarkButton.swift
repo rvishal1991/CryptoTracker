@@ -23,5 +23,8 @@ struct XmarkButton: View {
 }
 
 #Preview {
-    XmarkButton()
+    RouterView { _ in
+        XmarkButton()
+
+    }
 }

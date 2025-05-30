@@ -159,11 +159,13 @@ class HomeViewModel: ObservableObject {
         let volume = Statistics(title: "24h Volume" , value: data.volume)
         let btcDominance = Statistics(title: "BTC Dominance" , value: data.btcDominance)
         
-        let portfolioValue = portfolioCoins
+        let portfolioValue =
+            portfolioCoins
             .map({$0.currentHoldingsValue })
             .reduce(0, +)
         
-        let previousValue = portfolioCoins
+        let previousValue =
+            portfolioCoins
             .map { (coin) -> Double in
                 let currentValue = coin.currentHoldingsValue
                 let percentChange = (coin.priceChangePercentage24H ?? 0)/100
@@ -172,7 +174,7 @@ class HomeViewModel: ObservableObject {
             }
             .reduce(0, +)
         
-        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        let percentageChange = ((portfolioValue - previousValue) / previousValue)
         
         let portfolio = Statistics(
             title: "Portfolio Value" ,

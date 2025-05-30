@@ -14,6 +14,7 @@ struct HomeView: View {
    
     @EnvironmentObject private var vm:HomeViewModel
     @State private var showPortfolio:Bool = false // animate right
+
     @State private var selectedCoin:Coin? = nil
     
     var body: some View {
@@ -33,8 +34,15 @@ struct HomeView: View {
                 }
                 
                 if showPortfolio {
-                    portfolioCoinsList
-                        .transition(.move(edge: .trailing))
+                    ZStack {
+                        if vm.portfolioCoins.isEmpty && vm.searchText.isEmpty {
+                            portfolioEmptyState
+                        }else{
+                            portfolioCoinsList
+
+                        }
+                    }
+                    .transition(.move(edge: .trailing))
                 }
                
                 Spacer(minLength: 0)
@@ -64,6 +72,10 @@ extension HomeView {
                         router.showScreen(.sheet) { _ in
                             PortfolioView()
                                 .environmentObject(vm)
+                        }
+                    }else{
+                        router.showScreen(.sheet) { _ in
+                            SettingsView()
                         }
                     }
                 }
@@ -118,6 +130,15 @@ extension HomeView {
             }
         }
         .listStyle(.plain)
+    }
+    
+    private var portfolioEmptyState: some View {
+        Text("Add your first coin to your portfolio. Click the + button to get started!")
+            .font(.callout)
+            .foregroundColor(Color.theme.accent)
+            .fontWeight(.medium)
+            .multilineTextAlignment(.center)
+            .padding(48)
     }
     
     private var columnTitles: some View {

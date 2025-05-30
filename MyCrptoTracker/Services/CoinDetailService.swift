@@ -27,6 +27,7 @@ class CoinDetailService{
         
         coinDetailSubscription =  NetworkingManager.download(url: url)
             .decode(type: CoinDetail.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: NetworkingManager.handleCompletion, receiveValue: { [weak self] detail in
                 self?.coinDetails = detail
                 self?.coinDetailSubscription?.cancel() // only want to fetch one time so after getting coins cancelling
