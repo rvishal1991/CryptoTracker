@@ -17,9 +17,9 @@ A modern cryptocurrency tracking app built using **SwiftUI**, leveraging **CoinG
 - 🔄 **Combine Framework** for reactive data binding
 - 🔍 **Custom Search** with real-time filtering
 - ↕️ **Sorting** by price, name, and market cap
-- 📊 **Swift Charts** for interactive price history
-- 💾 **Core Data** for favorites/watchlist storage
-- 📱 **NavigationStack**-based flow
+- 📊 **Custom Line Chart** for interactive price history
+- 💾 **Swift Data** for portfolio storage
+- 📱 **SwiftfulRouting**-based naviagtion flow
 - ✨ **Custom Minor Animations** for smooth UX
 
 
