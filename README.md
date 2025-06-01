@@ -8,6 +8,15 @@ A modern cryptocurrency tracking app built using **SwiftUI**, leveraging **CoinG
 
 ---
 
+## 📸 ScreenShots
+
+- [![Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-24.png](https://i.postimg.cc/d3SW5Scj/Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-24.png)](https://postimg.cc/y3cXdjdD)
+- [![Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-26.png](https://i.postimg.cc/RVysf8RM/Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-26.png)](https://postimg.cc/jL64YMm9)
+- [![Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-36.png](https://i.postimg.cc/HWSPWj88/Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-36.png)](https://postimg.cc/0rwCckf9)
+- [![Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-39.png](https://i.postimg.cc/7Yft5DSs/Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-39.png)](https://postimg.cc/D83PN9jL)
+- [![Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-54.png](https://i.postimg.cc/vmd02Vkk/Simulator-Screenshot-i-Phone-16-Pro-2025-06-01-at-15-12-54.png)](https://postimg.cc/k2fNBBnv)
+---
+
 ## 🚀 Features
 
 - 📈 **Live Market Data** from [CoinGecko Open API](https://www.coingecko.com/en/api)
@@ -24,6 +33,12 @@ A modern cryptocurrency tracking app built using **SwiftUI**, leveraging **CoinG
 
 
 ---
+
+## 🧰 Used Third-Party Packages
+
+This project leverages a few third-party libraries to extend SwiftUI capabilities and simplify development:
+
+- [`SwiftfulRouting`](https://github.com/SwiftfulThinking/SwiftfulRouting) – For naviagtion  
 
 ## 🛠 Getting Started
 
@@ -44,7 +59,9 @@ Data is powered by the public CoinGecko API:
 
 /coins/{id} – fetch details and historical data
 
-⚠️ No API key is required. Subject to rate limits.
+## 🙌 Acknowledgements
+- https://www.swiftful-thinking.com/ for tutorials & ideas
+"""
 
 
 
