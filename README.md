@@ -60,7 +60,6 @@ Data is powered by the public CoinGecko API:
 
 ## 🙌 Acknowledgements
 - https://www.swiftful-thinking.com/ for tutorials & ideas
-"""
 
 
 
