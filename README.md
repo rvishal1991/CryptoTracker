@@ -46,9 +46,5 @@ Data is powered by the public CoinGecko API:
 
 ⚠️ No API key is required. Subject to rate limits.
 
----
-
-### ⚠️ Work in progress
-
 
 
